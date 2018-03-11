@@ -1,3 +1,57 @@
 Helm process start up notes
 ============================
 > Most of this comes from memory of my production experiences or the Helm documentation.
+
+1. Verify that Kubernetes (k8s) is installed
+        kubectl get nodes)
+2. Verify that Helm is pointing to the correct K8s cluster
+        kubect config current context
+              OR
+        kubectl cluster-info
+3. By default, the anisble script installs helm in the cluster
+4. Initialize Helm under the Ansible user
+
+
+8. Initialize Helm under the Ansible user identity – which you should be logged in as...
+
+Helm process – Start up new cluster
+- Most of this comes from memory of my production experiences or the Helm documentation.
+
+FROM Libre Office doc...
+MUST BE FORMATTED=============================================================== 
+
+1. ssh to the deployer or the cluster master
+ssh -i /.ssh/ansibleuser ansibleuser@0.0.0.0
+2. Verify where you are at in the file system.
+Pwd    - should be at /home/usr/ansibleuser
+IF NOT: sudo su – ansibleuser  (Do NOT omit the hyphen)
+3. Verify that Kubernetes (k8s) and kubectl is installed
+kubectl get nodes  - should return the names of the nodes in the cluster.
+	If nodes listed: both k8s and kubectl is installed and configured.
+IF NOT:
+a.  Check that kubectl is installed.
+i. Stdin> kubectl version
+should return the kubectl version
+ or: Stdin> kubectl
+Stdout> return basic man page option
+If not installed  Stdout> bash: not a valid command.
+a. Verify that: ls /user/local/bin/kubectl exists.
+ii. Initialize kubectl.
+For full kubectl install and configuration instructions see:
+https://kubernetes.io/docs/tasks/tools/install-kubectl/#configure-kubectl
+
+4. Verify that helm is installed
+ - By default, the anisble script installs helm in the cluster
+        Stdin> helm
+ -IF YES: Stdout> should return the default helm man page for “helm”
+- IF NOT: follow instructions at:  https://docs.helm.sh/using_helm/#installing-helm
+5. Initialize Helm under the Ansible user identity – which you should be logged in as...
+6. Verify that Helm is initialized and pointing to the correct K8s cluster
+        kubect config current context
+             OR
+        kubectl cluster-info
+7. Install the custom Helm repo
+a. Stdin: Helm repo add local http://localhost:8879
+b. Verify installed correctly:  Stdin> helm repo list
+Stdout> default and local should be listed.
+8.
