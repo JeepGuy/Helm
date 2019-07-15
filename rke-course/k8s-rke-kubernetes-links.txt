@@ -1,0 +1,11 @@
+https://rancher.com/
+
+https://rancher.com/docs/
+
+https://kubernetes.io/
+
+https://kubernetes.io/docs/home/?path=users&persona=app-developer&level=foundational
+
+https://github.com/rancher/rke
+
+https://rancher.com/docs/rke/latest/en/
